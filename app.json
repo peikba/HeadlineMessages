@@ -1,0 +1,46 @@
+{
+  "id": "8c74f05a-76c3-467d-84c9-6e5f80334a38",
+  "name": "Headline administration",
+  "publisher": "Bech-Andersen Consult ApS",
+  "version": "26.0.0.0",
+  "brief": "Headline administration in Business Central",
+  "description": "Headline administration in Business Central",
+  "privacyStatement": "",
+  "EULA": "https://ba-consult.dk/downloads/warning.txt",
+  "help": "",
+  "url": "",
+  "logo": "./Images/Logo.jpg",
+  "dependencies": [
+    {
+      "id": "3099ffc7-4cf7-4df6-9b96-7e4bc2bb587c",
+      "name": "Subscription Billing",
+      "version": "1.0.0.0",
+      "publisher": "Microsoft"
+    },
+    {
+      "id": "b3780cd9-f8f8-4a83-a4d5-0c2ad87b28af",
+      "name": "Sustainability",
+      "version": "1.0.0.0",
+      "publisher": "Microsoft"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "26.0.0.0",
+  "idRanges": [
+    {
+      "from": 78500,
+      "to": 78599
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "13.0",
+  "features": [
+    "NoImplicitWith",
+    "TranslationFile"
+  ]
+}
