@@ -22,6 +22,7 @@ page 78500 "BAC Headline Setup"
                     ShowCaption = false;
                     Visible = ShowEssentialBusinessHeadlinesWarning;
                     MultiLine = true;
+                    Style = Ambiguous;
                 }
             }
             group(Heading)
@@ -43,6 +44,13 @@ page 78500 "BAC Headline Setup"
                 }
             }
         }
+        area(FactBoxes)
+        {
+            part(Logo; "BAC AL Logo FactBox")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 
     actions
@@ -56,11 +64,12 @@ page 78500 "BAC Headline Setup"
                 PromotedCategory = Process;
                 Image = List;
                 RunObject = page "BAC Translations";
+                RunPageLink = "Entry No." = const(0);
                 ApplicationArea = All;
             }
-            action(HeadlineSelections)
+            action(HeadlinePageSelections)
             {
-                Caption = 'Headline Selections';
+                Caption = 'Headline Page Selections';
                 ToolTip = 'Define which headline pages should be included';
                 Promoted = true;
                 PromotedCategory = Process;
@@ -97,6 +106,16 @@ page 78500 "BAC Headline Setup"
                 Image = List;
                 RunObject = page "BAC Headline Messages";
                 ApplicationArea = All;
+            }
+            action("About Headline Messages")
+            {
+                Caption = 'About Headline Messages';
+                RunObject = page "BAC About Headline Messages";
+                Image = AboutNav;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+
             }
         }
     }

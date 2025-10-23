@@ -12,7 +12,7 @@ page 78501 "BAC Translations"
             group(DocumentText)
             {
                 Caption = 'Document Text';
-                field(HeadlineSetup; HeadlineSetup."Default Message Text")
+                field(HeadlineSetup; OriginalText)
                 {
                     Editable = false;
                 }
@@ -35,10 +35,22 @@ page 78501 "BAC Translations"
         }
     }
     trigger OnOpenPage()
+    var
+        HeadlineSetup: Record "BAC Headline Setup";
+        HeadlineMessage: Record "BAC Headline Message";
+        EntryNoInt: Integer;
     begin
         HeadlineSetup.Get();
+        if Rec.GetFilter("Entry No.") = '0' then
+            OriginalText := HeadlineSetup."Default Message Text"
+        else begin
+            Evaluate(EntryNoInt, Rec.GetFilter("Entry No."));
+            HeadlineMessage.SetRange("Entry No.", EntryNoInt);
+            if HeadlineMessage.FindFirst() then
+                OriginalText := HeadlineMessage.Message;
+        end;
     end;
 
     var
-        HeadlineSetup: Record "BAC Headline Setup";
+        OriginalText: Text[250];
 }

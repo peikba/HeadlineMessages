@@ -16,7 +16,7 @@ codeunit 78500 "BAC Event Subscriptions"
             DocumentText := HeadlineSetup."Default Message Text";
             Language.SetRange("Windows Language ID", GlobalLanguage);
             if Language.FindFirst() then
-                if HeadlineTranslation.Get(Language.Code) then
+                if HeadlineTranslation.Get(0, Language.Code) then
                     DocumentText := HeadlineTranslation.Translation;
             if DocumentText.Contains('%1') then
                 DocumentationText := StrSubstNo(DocumentText, CompanyInf.Name)

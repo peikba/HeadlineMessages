@@ -35,12 +35,24 @@ page 78506 "BAC Headline Messages"
                 }
             }
         }
-        area(Factboxes)
-        {
-
-        }
     }
 
+actions
+{
+    area(Processing)
+    {
+            action(Translations)
+            {
+                Caption = 'Translations';
+                Promoted = true;
+                PromotedCategory = Process;
+                Image = List;
+                RunObject = page "BAC Translations";
+                RunPageLink = "Entry No."=field("Entry No.");
+                ApplicationArea = All;
+            }
+    }
+}
     trigger OnClosePage()
     var
         NoSegemntWarningLbl: Label 'No Segments have been selected for this message - Close anyway?';
