@@ -12,7 +12,7 @@ page 78503 "BAC About Headline Messages"
             {
 
                 Caption = 'About Headline Message';
-                InstructionalText = 'Open-Source Headline Message app. Source code can be located at https://github.com/peikba/Headline-Message.';
+                InstructionalText = 'Open-Source Headline Message app. Source code can be located at https://github.com/peikba/HeadlineMessages.';
                 ShowCaption = false;
             }
             grid("App")
