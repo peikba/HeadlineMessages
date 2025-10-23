@@ -2,9 +2,8 @@ page 78505 "BAC User Headline Segments"
 {
     Caption = 'User Headline Segments';
     PageType = List;
-    ApplicationArea = All;
-    UsageCategory = Lists;
     SourceTable = "BAC User Headline Segment";
+    ApplicationArea = All;
 
     layout
     {

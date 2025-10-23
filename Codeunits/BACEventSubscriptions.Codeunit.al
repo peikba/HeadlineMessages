@@ -1,7 +1,7 @@
 codeunit 78500 "BAC Event Subscriptions"
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"RC Headlines Page Common", OnAfterCreateDocumentationText, '', false, false)]
-    local procedure SetDocumentationText(var DocumentationText: Text[250])
+    local procedure SetHeadlineText(var DocumentationText: Text[250])
     var
         CompanyInf: Record "Company Information";
         DocumentText: Text[250];
@@ -12,8 +12,8 @@ codeunit 78500 "BAC Event Subscriptions"
         if not HeadlineSetup.Get() then
             exit;
         CompanyInf.Get();
-        if HeadlineSetup."Default Document Text" <> '' then begin
-            DocumentText := HeadlineSetup."Default Document Text";
+        if HeadlineSetup."Default Message Text" <> '' then begin
+            DocumentText := HeadlineSetup."Default Message Text";
             Language.SetRange("Windows Language ID", GlobalLanguage);
             if Language.FindFirst() then
                 if HeadlineTranslation.Get(Language.Code) then
@@ -21,7 +21,7 @@ codeunit 78500 "BAC Event Subscriptions"
             if DocumentText.Contains('%1') then
                 DocumentationText := StrSubstNo(DocumentText, CompanyInf.Name)
             else
-                DocumentationText := HeadlineSetup."Default Document Text";
+                DocumentationText := HeadlineSetup."Default Message Text";
         end;
     end;
 
@@ -30,8 +30,8 @@ codeunit 78500 "BAC Event Subscriptions"
     begin
         if not HeadlineSetup.Get() then
             exit;
-        if HeadlineSetup."Default Document URL" <> '' then
-            Result := HeadlineSetup."Default Document URL";
+        if HeadlineSetup."Default Message URL" <> '' then
+            Result := HeadlineSetup."Default Message URL";
     end;
 
     var

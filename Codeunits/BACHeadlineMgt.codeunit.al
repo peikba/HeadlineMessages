@@ -1,10 +1,9 @@
 codeunit 78501 "BAC Headline Mgt"
 {
-    procedure GetUserMessages(inMessageNo: Integer): Text
+    procedure GetUserMessages(inMessageNo: Integer; var OutMessage: Text[250]; var OutHyperLink: Text[250])
     var
         UserSegment: Record "BAC User Headline Segment";
-        HeadlineMessages: Record "BAC Headline Message";
-        MessageHeadlineSegment: Record "BAC Message Headline Segment";
+        HeadlineMessage: Record "BAC Headline Message";
         SegmentCounter: Integer;
     begin
         UserSegment.SetRange("User ID", UserId());
@@ -12,10 +11,13 @@ codeunit 78501 "BAC Headline Mgt"
             repeat
                 SegmentCounter += 1;
                 if SegmentCounter = inMessageNo then begin
-                    MessageHeadlineSegment.SetRange("Headline Segment Code", UserSegment."Headline Segment Code");
-                    if MessageHeadlineSegment.FindFirst() then begin
-                        HeadlineMessages.Get(MessageHeadlineSegment."Entry No.");
-                        exit(HeadlineMessages.Message);
+                    HeadlineMessage.SetRange("Segment Code", UserSegment."Headline Segment Code");
+                    HeadlineMessage.SetFilter("From Date", '<=%1', WorkDate());
+                    HeadlineMessage.SetFilter("To Date", '>=%1', WorkDate());
+                    if HeadlineMessage.FindFirst() then begin
+                        OutMessage := HeadlineMessage.Message;
+                        OutHyperLink := HeadlineMessage.Hyperlink;
+                        exit;
                     end;
                 end;
             until UserSegment.Next() = 0;

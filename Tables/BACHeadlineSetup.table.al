@@ -9,14 +9,14 @@ table 78500 "BAC Headline Setup"
             Caption = 'Primary Key';
             DataClassification = SystemMetadata;
         }
-        field(2; "Default Document Text"; Text[250])
+        field(2; "Default Message Text"; Text[250])
         {
-            Caption = 'Default Document Text';
+            Caption = 'Default Message Text';
             DataClassification = SystemMetadata;
         }
-        field(3; "Default Document URL"; Text[250])
+        field(3; "Default Message URL"; Text[250])
         {
-            Caption = 'Default Document URL';
+            Caption = 'Default Message URL';
             DataClassification = SystemMetadata;
         }
     }

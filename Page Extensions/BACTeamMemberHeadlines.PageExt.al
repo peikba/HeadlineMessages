@@ -7,47 +7,69 @@ pageextension 78506 "BAC TeamMember Headlines" extends "Headline RC Team Member"
             group("BAC Messages")
             {
                 ShowCaption = false;
-                field(DocumentationText1; GetDocumentationText(1))
+                field(HeadlineText1; HeadlineText[1])
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Documentation headline';
-                    DrillDown = false;
+                    DrillDown = true;
                     Editable = false;
-                    Visible = DefaultFields1Visible;
-                }
-                field(DocumentationText2; GetDocumentationText(2))
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Documentation headline';
-                    DrillDown = false;
-                    Editable = false;
-                    Visible = DefaultFields2Visible;
-                }
-                field(DocumentationText3; GetDocumentationText(3))
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Documentation headline';
-                    DrillDown = false;
-                    Editable = false;
-                    Visible = DefaultFields3Visible;
-                }
-                field(DocumentationText4; GetDocumentationText(4))
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Documentation headline';
-                    DrillDown = false;
-                    Editable = false;
-                    Visible = DefaultFields4Visible;
-                }
-                field(DocumentationText5; GetDocumentationText(5))
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Documentation headline';
-                    DrillDown = false;
-                    Editable = false;
-                    Visible = DefaultFields5Visible;
-                }
+                    Visible = HeadlinePart1Visible;
 
+                    trigger OnDrillDown()
+                    begin
+                        if DrillDown1Visible and (HyperLinkText[1] <> '') then
+                            Hyperlink(HyperLinkText[1]);
+                    end;
+                }
+                field(HeadlineText2; HeadlineText[2])
+                {
+                    ApplicationArea = Basic, Suite;
+                    DrillDown = true;
+                    Editable = false;
+                    Visible = HeadlinePart2Visible;
+
+                    trigger OnDrillDown()
+                    begin
+                        if DrillDown2Visible and (HyperLinkText[2] <> '') then
+                            Hyperlink(HyperLinkText[2]);
+                    end;
+
+                }
+                field(HeadlineText3; HeadlineText[3])
+                {
+                    ApplicationArea = Basic, Suite;
+                    DrillDown = true;
+                    Editable = false;
+                    Visible = HeadlinePart3Visible;
+                    trigger OnDrillDown()
+                    begin
+                        if DrillDown3Visible and (HyperLinkText[3] <> '') then
+                            Hyperlink(HyperLinkText[3]);
+                    end;
+                }
+                field(HeadlineText4; HeadlineText[4])
+                {
+                    ApplicationArea = Basic, Suite;
+                    DrillDown = true;
+                    Editable = false;
+                    Visible = HeadlinePart4Visible;
+                    trigger OnDrillDown()
+                    begin
+                        if DrillDown4Visible and (HyperLinkText[4] <> '') then
+                            Hyperlink(HyperLinkText[4]);
+                    end;
+                }
+                field(HeadlineText5; HeadlineText[5])
+                {
+                    ApplicationArea = Basic, Suite;
+                    DrillDown = true;
+                    Editable = false;
+                    Visible = HeadlinePart5Visible;
+                    trigger OnDrillDown()
+                    begin
+                        if DrillDown5Visible and (HyperLinkText[5] <> '') then
+                            Hyperlink(HyperLinkText[5]);
+                    end;
+                }
             }
         }
     }
@@ -58,25 +80,37 @@ pageextension 78506 "BAC TeamMember Headlines" extends "Headline RC Team Member"
     begin
         if not RCSelection.Get(1446) then
             Clear(RCSelection);
-        DefaultFields1Visible := RCSelection.Selected and (GetDocumentationText(1) <> '');
-        DefaultFields2Visible := RCSelection.Selected and (GetDocumentationText(2) <> '');
-        DefaultFields3Visible := RCSelection.Selected and (GetDocumentationText(3) <> '');
-        DefaultFields4Visible := RCSelection.Selected and (GetDocumentationText(4) <> '');
-        DefaultFields5Visible := RCSelection.Selected and (GetDocumentationText(5) <> '');
+       if not RCSelection.Selected then
+            exit;
+        HeadlineMgt.GetUserMessages(1, HeadlineText[1], HyperLinkText[1]);
+        HeadlinePart1Visible := HeadlineText[1] <> '';
+        DrillDown1Visible := HyperLinkText[1] <> '';
+        HeadlineMgt.GetUserMessages(2, HeadlineText[2], HyperLinkText[2]);
+        HeadlinePart2Visible := HeadlineText[2] <> '';
+        DrillDown2Visible := HyperLinkText[2] <> '';
+        HeadlineMgt.GetUserMessages(3, HeadlineText[3], HyperLinkText[3]);
+        HeadlinePart3Visible := HeadlineText[3] <> '';
+        DrillDown3Visible := HyperLinkText[3] <> '';
+        HeadlineMgt.GetUserMessages(4, HeadlineText[4], HyperLinkText[4]);
+        HeadlinePart4Visible := HeadlineText[4] <> '';
+        DrillDown4Visible := HyperLinkText[4] <> '';
+        HeadlineMgt.GetUserMessages(5, HeadlineText[5], HyperLinkText[5]);
+        HeadlinePart5Visible := HeadlineText[5] <> '';
+        DrillDown5Visible := HyperLinkText[5] <> '';
     end;
 
-    var
-        DefaultFields1Visible: Boolean;
-        DefaultFields2Visible: Boolean;
-        DefaultFields3Visible: Boolean;
-        DefaultFields4Visible: Boolean;
-        DefaultFields5Visible: Boolean;
-
-
-    local procedure GetDocumentationText(inMessage: Integer): Text
     var
         HeadlineMgt: Codeunit "BAC Headline Mgt";
-    begin
-        Exit(HeadlineMgt.GetUserMessages(inMessage));
-    end;
+        HeadlinePart1Visible: Boolean;
+        HeadlinePart2Visible: Boolean;
+        HeadlinePart3Visible: Boolean;
+        HeadlinePart4Visible: Boolean;
+        HeadlinePart5Visible: Boolean;
+        DrillDown1Visible: Boolean;
+        DrillDown2Visible: Boolean;
+        DrillDown3Visible: Boolean;
+        DrillDown4Visible: Boolean;
+        DrillDown5Visible: Boolean;
+        HeadlineText: array[5] of Text[250];
+        HyperLinkText: array[5] of Text[250];
 }

@@ -2,9 +2,8 @@ page 78501 "BAC Translations"
 {
     Caption = 'Translations';
     PageType = List;
-    ApplicationArea = All;
-    UsageCategory = Lists;
     SourceTable = "BAC Headline Translation";
+    ApplicationArea = All;
 
     layout
     {
@@ -13,7 +12,7 @@ page 78501 "BAC Translations"
             group(DocumentText)
             {
                 Caption = 'Document Text';
-                field(HeadlineSetup; HeadlineSetup."Default Document Text")
+                field(HeadlineSetup; HeadlineSetup."Default Message Text")
                 {
                     Editable = false;
                 }
