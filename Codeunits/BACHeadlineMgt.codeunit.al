@@ -15,7 +15,7 @@ codeunit 78501 "BAC Headline Mgt"
                 if SegmentCounter = inMessageNo then begin
                     HeadlineMessage.SetRange("Segment Code", UserSegment."Headline Segment Code");
                     HeadlineMessage.SetFilter("From Date", '<=%1', WorkDate());
-                    HeadlineMessage.SetFilter("To Date", '>=%1', WorkDate());
+                    HeadlineMessage.SetFilter("To Date", '>=%1|%2', WorkDate(),0D);
                     if HeadlineMessage.FindFirst() then begin
                         OutMessage := HeadlineMessage.Message;
                         Language.SetRange("Windows Language ID", GlobalLanguage);
